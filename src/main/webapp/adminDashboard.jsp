@@ -6,238 +6,184 @@
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Font Awesome for icons -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <style>
-        /* Color Palette */
+        /* Modern Dark Blue Palette */
         :root {
-            --color-lightest-blue: #EFF3FF;
-            --color-lighter-blue: #C6DBEF;
-            --color-light-blue: #9ECAE1;
-            --color-medium-blue: #6BAED5;
-            --color-dark-blue: #3182BD;
-            --color-darkest-blue: #08519C;
+            --primary-blue: #29ABE2;        /* A brighter, more modern blue */
+            --secondary-blue: #4682B4;     /* Steel Blue */
+            --accent-blue: #5DADE2;         /* A lighter accent for highlights */
+            --dark-blue: #08306B;          /* A deep, professional dark blue */
+            --text-light: #FFFFFF;            /* Clean, crisp white */
+            --card-bg: rgba(255, 255, 255, 0.05); /*  Translucent white for a frosted glass effect */
         }
 
-        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            /* background-image: url('cover.jpg');  Add your image path here */
-            background: linear-gradient(to bottom, #00008B, #0A192F); /* Dark Blue Gradient */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: var(--color-darkest-blue);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, var(--dark-blue), #000000); /* Dark blue gradient */
+            color: var(--text-light); /* Changed default text color to white for dark background */
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
-
-        /* Header Styles */
         .dashboard-header {
-            background-color: var(--color-darkest-blue);
-            color: white;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); /* Darker blue gradient for header */
+            color: var(--text-light);
+            padding: 30px;
             text-align: center;
-            border-radius: 0 0 10px 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-
         .dashboard-header h2 {
-            margin-bottom: 0;
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
         }
-
-        /* Sign Out Button */
         .sign-out-btn {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: var(--color-medium-blue);
-            border: none;
+            background-color: rgba(255,255,255,0.1); /* Translucent white */
+            color: var(--text-light); /* white */
+            border: 1px solid var(--text-light);
+            padding: 10px 20px;
             border-radius: 5px;
-            padding: 8px 16px;
-            color: white;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         .sign-out-btn:hover {
-            background-color: var(--color-dark-blue);
+            background-color: var(--text-light);
+            color: var(--dark-blue); /* Dark blue on hover */
         }
-
-        /* Container Styles */
         .container {
-            background-color: rgba( 0.9); 
-            border-radius: 10px;
-            padding: 30px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            flex-grow: 1;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            color:white; /* set the text color of the container to white so text appears  */
+            background-color: var(--card-bg); /* Translucent white */
+            border-radius: 15px;
+            padding: 40px;
+            margin: -20px auto 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            max-width: 1200px;
         }
-
-        /* Data Card Styles */
         .data-card {
-            background-color: var(--color-lightest-blue);
-            color: var(--color-darkest-blue);
-            border-radius: 70px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            background-color: var(--card-bg); /* Translucent white */
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: var(--text-light); /* Keep text color white */
         }
-
         .data-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
         }
-
         .data-card i {
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: var(--color-medium-blue);
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-blue); /* Lighter blue for icons */
         }
-
         .data-card h2 {
-            font-size: 2.5em;
+            font-size: 2.5rem;
+            margin: 0;
             font-weight: bold;
+            color: var(--text-light); /* Keep text color white */
         }
-
         .data-card p {
-            font-size: 1.1em;
-            color: var(--color-dark-blue);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-blue); /* Lighter text color */
         }
-
         .data-card .btn {
-            margin-top: 15px;
-            background-color: var(--color-dark-blue);
+            background-color: var(--primary-blue); /* Lighter blue for buttons */
             border: none;
-            border-radius: 5px;
-            padding: 8px 16px;
-            color: white;
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-radius: 8px;
             transition: background-color 0.3s ease;
         }
-
         .data-card .btn:hover {
-            background-color: var(--color-darkest-blue);
+            background-color: var(--secondary-blue); /* Darker blue on hover */
         }
-
-        /* Form Card Styles */
         .card {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background-color: var(--card-bg); /* Translucent white */
+            color: var(--text-light); /* Keep text color white */
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light); /* Keep text color white */
             margin-bottom: 20px;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-body {
-            padding: 20px;
-            background-color: rgba(255,255,255,0.8);/* set the card body to have a semi trasparent white color */
-            color:black;  /* set the text color of the card body to black*/
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: var(--color-darkest-blue);
-        }
-
-        /* Form Styles */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-
         label {
-            font-weight: bold;
-            color: var(--color-dark-blue);
+            font-weight: 600;
+            color: var(--accent-blue); /* Lighter blue for labels */
+            margin-bottom: 5px;
         }
-
         input[type="text"],
         input[type="number"],
         input[type="password"] {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            margin-top: 5px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            color:black;
+            padding: 12px;
+            background-color: rgba(255,255,255,0.1); /* Translucent white */
+            border: 1px solid var(--accent-blue); /* Blue border */
+            border-radius: 8px;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
         }
-
         input[type="text"]:focus,
         input[type="number"]:focus,
         input[type="password"]:focus {
+            border-color: var(--primary-blue);
             outline: none;
-            border-color: var(--color-medium-blue);
-            box-shadow: 0 0 0 0.2rem rgba(107, 174, 213, 0.25);
+            box-shadow: 0 0 5px rgba(41,182,246,0.5);
         }
-
         .btn-primary {
-            background-color: var(--color-medium-blue);
+            background-color: var(--primary-blue);
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            color: white;
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 8px;
             transition: background-color 0.3s ease;
         }
-
         .btn-primary:hover {
-            background-color: var(--color-dark-blue);
+            background-color: var(--secondary-blue);
         }
-
         .btn-success {
-            background-color: var(--color-medium-blue);
+            background-color: var(--accent-blue);
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            color: white;
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 8px;
             transition: background-color 0.3s ease;
         }
-
         .btn-success:hover {
-            background-color: var(--color-dark-blue);
-        }
-
-        /* Footer (Optional) */
-        footer {
-            background-color: var(--color-darkest-blue);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+            background-color: var(--primary-blue);
         }
     </style>
 </head>
 <body>
-
     <!-- Header with sign-out button -->
     <div class="dashboard-header">
-        <h2><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h2>
+        <h2><i class="fas fa-chart-line"></i> Admin Dashboard</h2>
         <!-- Sign Out button linking to login.jsp -->
-        <a href="login.jsp" class="sign-out-btn">Sign Out</a>
+        <a href="login.jsp" class="btn sign-out-btn">Sign Out</a>
     </div>
 
     <div class="container">
@@ -246,40 +192,41 @@
             <!-- Total Bookings Card -->
             <div class="col-md-4">
                 <div class="data-card">
-                    <i class="fas fa-calendar-check"></i>
+                    <i class="fas fa-ticket-alt"></i>
+                    <%-- <h2>${totalBookings}</h2> --%>
                     <p>Total Bookings</p>
                     <a href="ViewBookingsServlet" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-
             <!-- Active Drivers Card -->
             <div class="col-md-4">
                 <div class="data-card">
-                    <i class="fas fa-car"></i>
+                    <i class="fas fa-taxi"></i>
+                    <%-- <h2>${activeDrivers}</h2> --%>
                     <p>Active Drivers</p>
                     <a href="ViewDriversServlet" class="btn btn-primary">View Details</a>
                 </div>
             </div>
-
             <!-- Registered Customers Card -->
             <div class="col-md-4">
                 <div class="data-card">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-user-friends"></i>
+                    <%-- <h2>${registeredCustomers}</h2> --%>
                     <p>Registered Customers</p>
                     <a href="ViewCustomersServlet" class="btn btn-primary">View Details</a>
                 </div>
             </div>
         </div>
 
-        <br/>
+        
 
         <!-- Registration forms for Customer and Driver -->
-        <div class="row">
+        <div class="row mt-4">
             <!-- Register Customer -->
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i> Register Customer</h3>
+                        <h3 class="card-title"><i class="fas fa-user-check"></i> Register Customer</h3>
                         <form action="AdminRegisterServlet" method="post">
                             <div class="form-group">
                                 <label for="customerName">Name:</label>
@@ -313,7 +260,7 @@
                             </div>
                             <input type="hidden" name="role" value="customer" />
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-user-plus"></i> Register Customer
+                                <i class="fas fa-user-check"></i> Register Customer
                             </button>
                         </form>
                     </div>
@@ -324,7 +271,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i> Register Driver</h3>
+                        <h3 class="card-title"><i class="fas fa-user-tie"></i> Register Driver</h3>
                         <form action="AdminRegisterServlet" method="post">
                             <div class="form-group">
                                 <label for="driverName">Name:</label>
@@ -358,21 +305,22 @@
                             </div>
                             <input type="hidden" name="role" value="driver" />
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-user-plus"></i> Register Driver
+                                <i class="fas fa-user-tie"></i> Register Driver
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-                <!-- Section to update a fixed rate per KM -->
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <h3 class="mb-3" style="color: white;">Update Fixed Rate per KM</h3>
+    </div>
+    
+    <!-- Section to update a fixed rate per KM, centered -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6 text-center">
+                <h3 class="mb-3">Update Fixed Rate per KM</h3>
                 <form action="UpdateRateServlet" method="post">
                     <div class="mb-3">
-                        <label for="ratePerKm" class="form-label" style="color: white;">New Rate (LKR per KM):</label>
+                        <label for="ratePerKm" class="form-label">New Rate (LKR per KM):</label>
                         <input type="number" step="0.01" class="form-control" id="ratePerKm" name="ratePerKm"
                                value="${currentRate}" required />
                     </div>
@@ -381,11 +329,7 @@
             </div>
         </div>
 
-    
-
-    
-
-    <!-- Bootstrap JS (Optional) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

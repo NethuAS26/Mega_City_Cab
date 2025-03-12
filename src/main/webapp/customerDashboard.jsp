@@ -4,38 +4,37 @@
 <head>
     <title>Customer Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-
-
-    :root {
-            --primary-blue: #0a7cd4;   /* Main brand color */
-            --accent-blue: #0a76ba;    /* Accent color for hover/focus states */
-            --dark-bg: #0a192f;        /* Dark background (body gradient start) */
-            --black-bg: #000000;       /* Pure black for gradient end */
-            --card-bg: rgba(18, 18, 18, 0.8); /* Semi-transparent card background */
-            --text-light: #ffffff;     /* Light text */
-            --border-dark: #2f2f2f;    /* Dark border for tables & inputs */
+        :root {
+            --primary-blue: #29ABE2;        /* A brighter, more modern blue */
+            --secondary-blue: #4682B4;     /* Steel Blue */
+            --accent-blue: #5DADE2;         /* A lighter accent for highlights */
+            --dark-blue: #08306B;          /* A deep, professional dark blue */
+            --text-light: #FFFFFF;            /* Clean, crisp white */
+            --card-bg: rgba(255, 255, 255, 0.05); /*  Translucent white for a frosted glass effect */
         }
+
         /* Background Image for entire page */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             color: var(--text-light);
-            /* Use a gradient background from dark blue (#0a192f) to black (#000000) */
-            /* background: linear-gradient(to bottom right, var(--dark-bg), var(--black-bg)); */ /* Original Gradient */
-            background: linear-gradient(to bottom, #00008B, #0A192F); /* Dark Blue Gradient */
+            /* Use a gradient background from dark blue (#00008B) to dark blue (#0A192F) */
+            background: linear-gradient(to bottom, var(--dark-blue), #000000);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
-            }
-
-
+        }
 
         /* Header bar styling */
         .header-bar {
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
+            background-color: rgba(10, 31, 47, 0.7); /* Slightly transparent dark blue */
+            color: var(--text-light);
             padding: 20px;
             text-align: center;
             border-radius: 0 0 10px 10px;
@@ -49,80 +48,148 @@
             position: absolute;
             top: 20px;
             right: 20px;
+            background-color: var(--dark-blue); /* Black */
+            color: var(--text-light); /* White */
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        
-        
+
+        .sign-out-btn:hover {
+            background-color: var(--accent-blue);
+        }
+
+
         /* Container styling */
         .content-container {
             max-width: 900px;
             margin: 2rem auto;
-            background-color: rgba( 0.9);  /*Semi trasparent dark gray*/
+            background-color: var(--card-bg);  /*Semi trasparent dark gray*/
             border-radius: 10px;
             padding: 2rem;
-            color:white;    /*Setting text color to white*/
+            color: var(--text-light);    /*Setting text color to white*/
         }
+
         /* Table and form styling */
         .table th,
         .table td {
             text-align: center;
             vertical-align: middle;
+            border-color: var(--accent-blue); /* Use a dark border color */
         }
+
+        .table thead th {
+            background-color: var(--dark-blue);
+            color: var(--text-light);
+        }
+
         .form-control {
             margin-bottom: 10px;
             border-radius: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--accent-blue); /* Dark border */
             padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            color: var(--text-light); /* White text color */
         }
         .form-control:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 5px rgba(10, 124, 212, 0.5); /* Light blue shadow */
+            background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque on focus */
+        }
+        .form-select {
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--accent-blue); /* Dark border */
+            padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            color: black; /* White text color */
+        }
+
+        .form-select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 5px rgba(10, 124, 212, 0.5); /* Light blue shadow */
+            background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque on focus */
         }
         .btn {
             margin-top: 10px;
             padding: 0.75rem;
             border-radius: 5px;
             font-size: 1rem;
+            transition: background-color 0.3s;
         }
         .btn-primary {
-            background-color: #007bff;
+            background-color: var(--primary-blue);
             border: none;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: var(--secondary-blue);
         }
         .btn-info {
-            background-color: #17a2b8;
+            background-color: var(--accent-blue);
             border: none;
+            color: var(--text-light);
         }
         .btn-info:hover {
-            background-color: #138496;
+             background-color: rgba(23, 162, 184, 0.8);
         }
         .btn-danger {
             background-color: #dc3545;
             border: none;
+            color: var(--text-light);
         }
         .btn-danger:hover {
-            background-color: #c82333;
+             background-color: rgba(220, 53, 69, 0.8);
         }
         .btn-success {
             background-color: #28a745;
             border: none;
+            color: var(--text-light);
         }
         .btn-success:hover {
-            background-color: #218838;
+           background-color: rgba(40, 167, 69, 0.8);
         }
         /* Card styling */
         .card {
             margin-bottom: 1.5rem;
             border: none;
             border-radius: 10px;
+            background-color: var(--card-bg);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: var(--text-light);
         }
         .card-header {
-            background-color: #007bff;
-            color: white;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
             font-weight: bold;
             border-radius: 10px 10px 0 0;
+            padding: 1rem;
+        }
+
+        /* Bill printing styles (added for consistency) */
+        @media print {
+            body {
+                background: none; /* Remove background for printing */
+                color: #000; /* Default text color for printing */
+            }
+            .header-bar, .content-container {
+                background: none !important; /* Override background */
+                color: #000 !important; /* Override text color */
+                box-shadow: none; /* Remove shadow */
+                border: none;
+            }
+
+            /* Ensure readability of tables and form elements */
+            table, .table th, .table td {
+                border-color: #000 !important;
+            }
+
+            .form-control {
+                color: #000 !important; /* Force black text */
+            }
         }
     </style>
 </head>
@@ -131,7 +198,7 @@
     <!-- Header with sign-out button -->
     <div class="header-bar">
         <h2>Welcome to Customer Dashboard</h2>
-        <a href="login.jsp" class="btn btn-danger sign-out-btn">Sign Out</a>
+        <a href="login.jsp" class="sign-out-btn">Sign Out</a>
     </div>
 
     <div class="content-container">
@@ -142,10 +209,12 @@
             </div>
             <div class="card-body">
                 <form id="bookingForm">
+                    <div class="mb-3">
                     <label for="bookingDate" class="form-label">Date:</label>
-<input type="date" class="form-control"
-       id="bookingDate"
-       name="bookingDate" required />
+                    <input type="date" class="form-control"
+                           id="bookingDate"
+                           name="bookingDate" required />
+                     </div>
 
                     <div class="mb-3">
                         <label for="vehicleType" class="form-label">Vehicle Type:</label>
@@ -355,7 +424,7 @@
                             <tr><td><strong>Booking ID:</strong></td><td>${orderNumber}</td></tr>
                             <tr><td><strong>Date & Time:</strong></td><td>${dateTime}</td></tr>
                             <tr><td><strong>Destination:</strong></td><td>${destination}</td></tr>
-                            <tr><td><strong>Distance (KM):</strong></td><td>${distance}</td></tr>
+                            <tr><td><strong>Distance (KM:</strong></td><td>${distance}</td></tr>
                             <tr><td><strong>Driver:</strong></td><td>${driver}</td></tr>
                             <tr><td><strong>Vehicle:</strong></td><td>${vehicle}</td></tr>
                             <tr><td class="total"><strong>Total Price:</strong></td><td>${price} LKR</td></tr>
