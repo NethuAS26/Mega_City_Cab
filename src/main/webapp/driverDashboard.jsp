@@ -3,318 +3,235 @@
 <html>
 <head>
     <title>Driver Dashboard</title>
-    <!-- Bootstrap and FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <!-- Google Font for modern typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* 
-         * Modern Blue & Black Palette 
-         * Adjust these variables to fine-tune your preferred shades of blue and black.
-         */
+        /* Define color palette */
         :root {
-            --primary-blue: #0a7cd4;   /* Main brand color */
-            --accent-blue: #0a76ba;    /* Accent color for hover/focus states */
-            --dark-bg: #0a192f;        /* Dark background (body gradient start) */
-            --black-bg: #000000;       /* Pure black for gradient end */
-            --card-bg: rgba(18, 18, 18, 0.8); /* Semi-transparent card background */
-            --text-light: #ffffff;     /* Light text */
-            --border-dark: #2f2f2f;    /* Dark border for tables & inputs */
+            --primary-blue: #29ABE2;
+            --secondary-blue: #4682B4;
+            --accent-blue: #5DADE2;
+            --dark-blue: #08306B;
+            --text-light: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.05);
         }
 
-        /* Global Styles */
+        /* Background Image for the entire page */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, var(--dark-blue), #000000);
+            color: var(--text-light);
             margin: 0;
             padding: 0;
-            color: var(--text-light);
-            /* Use a gradient background from dark blue (#0a192f) to black (#000000) */
-            background: linear-gradient(to bottom right, var(--dark-bg), var(--black-bg));
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
         }
 
-        /* Header Styles */
-        .dashboard-header {
-            background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black */
+        /* Header bar styling */
+        .header-bar {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--text-light);
             padding: 20px;
             text-align: center;
-            position: relative;
-            border-bottom: 2px solid var(--primary-blue);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            margin-bottom: 30px;
+            position: relative; /* So we can place the sign-out button absolutely */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-
-        .dashboard-header h2 {
+        .header-bar h2 {
             margin: 0;
-            font-weight: 500;
+            font-size: 2rem;
+            font-weight: 700;
         }
 
-        /* Sign Out Button */
+        /* Sign Out button in the top-right corner */
         .sign-out-btn {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: var(--primary-blue);
-            border: none;
-            border-radius: 20px;
-            padding: 8px 16px;
+            background-color: rgba(255,255,255,0.1);
             color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .sign-out-btn:hover {
-            background-color: var(--accent-blue);
-            transform: translateY(-2px);
-        }
-
-        /* Main Container */
-        .content-container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Headings */
-        h3 {
-            margin-bottom: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-weight: 500;
-            margin-bottom: 5px;
-            display: inline-block;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-dark);
-            border-radius: 4px;
-            margin-top: 5px;
-            background-color: #2c2c2c;
-            color: var(--text-light);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        input[type="password"]:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 5px rgba(10,124,212,0.5);
-        }
-
-        /* Button Styles */
-        .btn-primary {
-            background-color: var(--primary-blue);
-            border: none;
-            border-radius: 4px;
+            border: 1px solid var(--text-light);
             padding: 10px 20px;
-            color: var(--text-light);
-            font-weight: 500;
-            transition: background 0.3s, transform 0.2s;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .sign-out-btn:hover {
+            background-color: var(--text-light);
+            color: var(--dark-blue);
         }
 
+        /* Semi‑transparent container for main content */
+        .content-container {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            margin: -20px auto 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            color: var(--text-light);
+        }
+
+        .form-control {
+            margin-bottom: 10px;
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 8px;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 5px rgba(41, 171, 226, 0.5);
+        }
+
+        .btn {
+            margin-top: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+       .btn-primary {
+            background-color: var(--primary-blue);
+            border: none;
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
         .btn-primary:hover {
-            background-color: var(--accent-blue);
-            transform: translateY(-2px);
+            background-color: var(--secondary-blue);
         }
 
         .btn-info {
-            background-color: transparent;
-            border: 1px solid var(--primary-blue);
-            border-radius: 4px;
-            padding: 10px 20px;
-            color: var(--primary-blue);
-            font-weight: 500;
-            transition: background 0.3s, color 0.3s, transform 0.2s;
+            background-color: var(--accent-blue);
+            border: none;
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
-
         .btn-info:hover {
             background-color: var(--primary-blue);
-            color: var(--text-light);
-            transform: translateY(-2px);
         }
-
         .btn-danger {
             background-color: #dc3545;
             border: none;
-            border-radius: 4px;
-            padding: 8px 16px;
             color: var(--text-light);
-            font-weight: 500;
-            transition: background 0.3s, transform 0.2s;
         }
 
-        .btn-danger:hover {
-            background-color: #c82333;
-            transform: translateY(-2px);
-        }
-
-        /* Table Styles */
-        .table {
-            width: 100%;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            background-color: transparent;
-            border-collapse: collapse;
-        }
-
+        /* Additional styling (optional) */
         .table th, .table td {
-            border: 1px solid var(--border-dark);
-            padding: 0.75rem;
             text-align: center;
+            vertical-align: middle;
+            border-color: var(--accent-blue); /* Blue border */
         }
 
         .table thead th {
-            background-color: var(--primary-blue);
+            background-color: var(--dark-blue);
             color: var(--text-light);
-            font-weight: 500;
-        }
-
-        /* Horizontal Rule Style */
-        hr {
-            border: 0;
-            height: 1px;
-            background: var(--border-dark);
-            margin: 2rem 0;
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            text-align: center;
-            color: var(--text-light);
-            margin-top: 20px;
-            border-top: 1px solid var(--border-dark);
         }
     </style>
 </head>
 <body>
 
-<!-- Header with sign-out button -->
-<div class="dashboard-header">
-    <h2><i class="fas fa-tachometer-alt"></i> Driver Dashboard</h2>
-    <a href="login.jsp" class="sign-out-btn">Sign Out</a>
-</div>
+    <!-- Header with sign-out button -->
+    <div class="header-bar">
+        <h2><i class="fas fa-taxi"></i> Welcome to Driver Dashboard</h2>
+        <!-- Sign Out button linking to login.jsp -->
+        <a href="login.jsp" class="btn sign-out-btn">Sign Out</a>
+    </div>
 
-<div class="content-container">
-    <!-- Form to Add New Vehicle -->
-    <h3>Add New Vehicle</h3>
-    <form id="vehicleForm" action="VehicleServlet" method="post">
-        <div class="form-group">
-            <label for="vehicleNumber">Vehicle Number:</label>
-            <input type="text" id="vehicleNumber" name="vehicleNumber" required/>
-        </div>
-        <div class="form-group">
-            <label for="vehicleType">Vehicle Type:</label>
-            <select id="vehicleType" name="vehicleType" required>
-                <option value="">Select Type</option>
-                <option value="Sedan">Sedan</option>
-                <option value="SUV">SUV</option>
-                <option value="Van">Van</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Vehicle</button>
-    </form>
+    <div class="content-container">
+        <!-- Form to Add New Vehicle (no image field) -->
+        <h3><i class="fas fa-car"></i> Add New Vehicle</h3>
+        <form id="vehicleForm" action="VehicleServlet" method="post">
+            <div class="mb-3">
+                <label for="vehicleNumber" class="form-label">Vehicle Number:</label>
+                <input type="text" class="form-control" id="vehicleNumber" name="vehicleNumber" required />
+            </div>
+            <div class="mb-3">
+                <label for="vehicleType" class="form-label">Vehicle Type:</label>
+                <select class="form-select form-control" id="vehicleType" name="vehicleType" required>
+                    <option value="">Select Type</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Van">Van</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Vehicle</button>
+        </form>
 
-    <hr>
+        <hr class="my-4">
 
-    <!-- Guidelines Button -->
-    <a href="DriverGuidelineServlet" class="btn btn-info">
-        <i class="fas fa-book-open"></i> View Guidelines
-    </a>
+        <a href="DriverGuidelineServlet" class="btn btn-info"><i class="fas fa-book"></i> View Guidelines</a>
+        <hr class="my-4">
 
-    <hr>
+        <h3><i class="fas fa-cars"></i> Your Vehicles</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Vehicle Number</th>
+                    <th>Vehicle Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="vehicleTableBody">
+                <!-- Vehicles loaded via JavaScript -->
+            </tbody>
+        </table>
 
-    <!-- Vehicle Table -->
-    <h3>Your Vehicles</h3>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Vehicle Number</th>
-            <th>Vehicle Type</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody id="vehicleTableBody">
-            <!-- Vehicles loaded via JavaScript -->
-        </tbody>
-    </table>
+        <hr class="my-4">
 
-    <hr>
+        <h3><i class="fas fa-clipboard-list"></i> Booking Details</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Customer Name</th>
+                    <th>Customer Number</th>
+                    <th>Destination</th>
+                    <th>Distance (km)</th>
+                    <th>Vehicle Number</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="bookingTableBody">
+                <!-- Bookings loaded via JavaScript -->
+            </tbody>
+        </table>
+    </div>
 
-    <!-- Booking Details Table -->
-    <h3>Booking Details</h3>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Booking ID</th>
-            <th>Customer Name</th>
-            <th>Customer Number</th>
-            <th>Destination</th>
-            <th>Distance (km)</th>
-            <th>Vehicle Number</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody id="bookingTableBody">
-            <!-- Bookings loaded via JavaScript -->
-        </tbody>
-    </table>
-</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
-<footer>
-    © 2024 Driver Dashboard
-</footer>
+            // 1) Load Vehicles
+            function loadVehicles() {
+                fetch("DriverVehiclesServlet")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        let tableBody = document.getElementById("vehicleTableBody");
+                        tableBody.innerHTML = "";
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+                        if (!data || data.length === 0) {
+                            tableBody.innerHTML = `<tr><td colspan="3" class="text-center">No vehicles found.</td></tr>`;
+                            return;
+                        }
 
-        // 1) Load Vehicles
-        function loadVehicles() {
-            fetch("DriverVehiclesServlet")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    let tableBody = document.getElementById("vehicleTableBody");
-                    tableBody.innerHTML = "";
-
-                    if (!data || data.length === 0) {
-                        tableBody.innerHTML = `<tr><td colspan="3" class="text-center">No vehicles found.</td></tr>`;
-                        return;
-                    }
-
-                    data.forEach(vehicle => {
-                        let row = `<tr>
+                        data.forEach(vehicle => {
+                            let row = `<tr>
                                 <td>${vehicle.vehicleNumber}</td>
                                 <td>${vehicle.vehicleType}</td>
                                 <td>
@@ -325,44 +242,44 @@
                                     </a>
                                 </td>
                             </tr>`;
-                        tableBody.innerHTML += row;
+                            tableBody.innerHTML += row;
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error fetching vehicles:", error);
+                        alert("Failed to load vehicles.");
                     });
-                })
-                .catch(error => {
-                    console.error("Error fetching vehicles:", error);
-                    alert("Failed to load vehicles.");
-                });
-        }
+            }
 
-        // 2) Load Bookings
-        function loadBookings() {
-            fetch("DriverBookingsServlet")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById("bookingTableBody").innerHTML = data;
-                })
-                .catch(error => {
-                    console.error("Error fetching bookings:", error);
-                    alert("Failed to load bookings.");
-                });
-        }
+            // 2) Load Bookings
+            function loadBookings() {
+                fetch("DriverBookingsServlet")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById("bookingTableBody").innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching bookings:", error);
+                        alert("Failed to load bookings.");
+                    });
+            }
 
-        // 3) Approve Booking
-        window.approveBooking = function (bookingId) {
-            fetch("ApproveBookingServlet", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: new URLSearchParams({
-                    bookingId: bookingId
-                }).toString()
-            })
+            // 3) Approve Booking
+            window.approveBooking = function(bookingId) {
+                fetch("ApproveBookingServlet", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: new URLSearchParams({
+                        bookingId: bookingId
+                    }).toString()
+                })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -376,19 +293,19 @@
                     console.error("Error approving booking:", error);
                     alert("Failed to approve booking.");
                 });
-        };
+            };
 
-        // 4) Complete Booking
-        window.completeBooking = function (bookingId) {
-            fetch("CompleteBookingServlet", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: new URLSearchParams({
-                    bookingId: bookingId
-                }).toString()
-            })
+            // 4) Complete Booking
+            window.completeBooking = function(bookingId) {
+                fetch("CompleteBookingServlet", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: new URLSearchParams({
+                        bookingId: bookingId
+                    }).toString()
+                })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -402,20 +319,20 @@
                     console.error("Error completing booking:", error);
                     alert("Failed to complete booking.");
                 });
-        };
+            };
 
-        // 5) Handle Add Vehicle Form Submission
-        document.getElementById("vehicleForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const formData = new URLSearchParams(new FormData(this)).toString();
+            // 5) Handle Add Vehicle Form Submission
+            document.getElementById("vehicleForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                const formData = new URLSearchParams(new FormData(this)).toString();
 
-            fetch("VehicleServlet", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: formData
-            })
+                fetch("VehicleServlet", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: formData
+                })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -431,13 +348,12 @@
                     console.error("Error adding vehicle:", error);
                     alert("Failed to add vehicle.");
                 });
-        });
+            });
 
-        // On page load, fetch both vehicles and bookings
-        loadVehicles();
-        loadBookings();
-    });
-</script>
+            // On page load, fetch both vehicles and bookings
+            loadVehicles();
+            loadBookings();
+        });
+    </script>
 </body>
 </html>
-
