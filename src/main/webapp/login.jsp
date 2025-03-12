@@ -2,135 +2,104 @@
 <html>
 <head>
     <title>Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Afacad', sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #00008B, #0A192F); /* Dark Blue Gradient */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('Cover.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
+            height: 100vh;
+            margin: 0;
         }
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); 
-            z-index: 1;
-        }
+
         .login-container {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
             width: 350px;
             text-align: center;
-            animation: fadeIn 0.5s ease-in-out;
-            position: relative;
-            z-index: 2;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+
         h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-            font-size: 2rem;
-            font-weight: 600;
+            color: #007BFF; /* Blue Color */
+            margin-bottom: 20px;
         }
+
         label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 5px;
             color: #555;
-            font-weight: 500;
             text-align: left;
         }
-        select, input[type="text"], input[type="password"] {
+
+        input[type="text"],
+        input[type="password"],
+        select {
             width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
+            padding: 10px;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
         }
-        select:focus, input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #ffeb3b;
-            box-shadow: 0 0 8px rgba(255, 235, 59, 0.5);
-            outline: none;
+
+        select {
+            appearance: none;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23007BFF' d='M1.59 0.37l4.41 5.26 4.41-5.26c0.61 0.38 0.61 1.02 0 1.4l-5 6c-0.3 0.38-0.9 0.38-1.2 0l-5-6c-0.6-0.38-0.6-1.02 0-1.4z'/%3E%3C/svg%3E") no-repeat right 10px center;
+            background-size: 12px;
+            padding-right: 30px;
         }
+
         input[type="submit"] {
-            width: 100%;
-            padding: 0.75rem;
-            background: #ffeb3b;
-            color: #333;
+            background: linear-gradient(to bottom, #00008B, #0A192F); /* Dark Blue Gradient */
+            color: #fff;
+            padding: 12px 20px;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
+            font-size: 16px;
+            transition: background 0.3s ease;
+            width: 100%;
         }
+
         input[type="submit"]:hover {
-            background: #fdd835;
-            transform: translateY(-2px);
+          background: linear-gradient(to bottom, #000055, #000000); /* Darker Blue Gradient */
         }
-        input[type="submit"]:active {
-            transform: translateY(0);
-        }
-        .role-select {
-            margin-bottom: 1.5rem;
-        }
-        .role-select label {
-            color: #333;
-        }
-        .role-select select {
-            background: #fff;
-            color: #333;
-        }
+
         .signup-link {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: #555;
+            margin-top: 15px;
+            font-size: 14px;
         }
+
         .signup-link a {
-            color: #fbc02d;
+            color: #007BFF; /* Blue Color */
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-weight: bold;
         }
+
         .signup-link a:hover {
-            color: #ff9800;
+            text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
     <div class="login-container">
         <h2>Login</h2>
         <form action="LoginServlet" method="post">
-            <div class="role-select">
-                <label for="roleSelect">Select Role:</label>
-                <select name="role" id="roleSelect">
-                    <option value="admin">Admin</option>
-                    <option value="customer">Customer</option>
-                    <option value="driver">Driver</option>
-                </select>
-            </div>
+            <label for="roleSelect">Select Role:</label>
+            <select name="role" id="roleSelect">
+                <option value="admin">Admin</option>
+                <option value="customer">Customer</option>
+                <option value="driver">Driver</option>
+            </select>
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required />
+            <input type="text" id="username" name="username" required />
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required />
+            <input type="password" id="password" name="password" required />
             <input type="submit" value="Login" />
         </form>
         <div class="signup-link">
