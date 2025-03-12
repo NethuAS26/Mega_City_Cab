@@ -4,87 +4,68 @@
 <head>
     <title>Driver Dashboard Guidelines</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Modern Blue Palette */
-        :root {
-            --primary-blue: #29ABE2;        /* A brighter, more modern blue */
-            --secondary-blue: #4682B4;     /* Steel Blue */
-            --accent-blue: #5DADE2;         /* A lighter accent for highlights */
-            --dark-blue: #08306B;          /* A deep, professional dark blue */
-            --text-light: #FFFFFF;            /* Clean, crisp white */
-            --card-bg: rgba(255, 255, 255, 0.05); /*  Translucent white for a frosted glass effect */
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* Modern, clean font */
-            background: linear-gradient(to bottom, var(--dark-blue), #000000);  /*  Rich gradient */
-            color: var(--text-light);       /* Consistent white text */
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            background-color: rgba( 0.6); /* Dark semi-transparent background */
-            border-radius: 12px;             /* More rounded corners */
-            padding: 30px;                    /* Increase padding for spaciousness */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /*  Enhanced shadow */
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);  /* subtle white border */
-            border-radius: 10px;           /* Match container radius */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);  /* card's  shadow */
-            color: var(--text-light);       /* Consistent text color */
-        }
-
-        .list-group-item {
-            background-color: transparent;    /* No background */
-            border: none;                     /* No borders */
-            color: var(--text-light);       /* Consistent text color */
-        }
-
-        .card-header {
-            background-color: var(--primary-blue) !important; /*  Primary Blue Header */
-            color: var(--text-light) !important;     /* White text */
-            font-weight: 600;                     /* Semi-bold */
-            border-radius: 10px 10px 0 0;      /* Match card radius */
-            padding: 12px 20px;
-        }
-
-        a {
-            color: var(--accent-blue);         /* Accent Blue Links */
-            text-decoration: none;          /* Clean look (no underline) */
-            transition: color 0.3s ease;    /* Smooth hover effect */
-        }
-
-        a:hover {
-            color: var(--text-light);       /* Light text on hover */
-        }
-
-        h2, h3, p, li {
-            color: var(--text-light);       /* Clean white text */
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary-blue);   /* Steel Blue */
-            border: none;
-            border-radius: 8px;               /* Slightly rounder */
-            color: var(--text-light);       /* Clean text */
-            transition: background-color 0.3s ease, transform 0.2s ease;  /*Smooth transition*/
-            padding: 10px 20px;
-
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--dark-blue);      /* Deep Blue */
-             color: var(--text-light);       /* Clean text */
-            transform: translateY(-3px);       /* add depth to buttons by pushing slightly up on hover*/
-        }
-    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Dark Blue Color Palette (Same as Customer) */
+        :root {
+            --primary-blue: #1E3A8A;
+            --secondary-blue: #334155;
+            --text-light: #FFFFFF;
+            --background-dark: #0F172A;
+            --card-background: #1E293B;
+            --accent-blue: #60A5FA;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-light);
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+            background-color: var(--card-background);
+            color: var(--text-light);
+        }
+        .card-header {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .list-group-item {
+            border: none;
+            background-color: transparent;
+            color: var(--text-light);
+        }
+        .btn-secondary {
+            background-color: var(--secondary-blue);
+            border-color: var(--secondary-blue);
+            color: var(--text-light);
+        }
+        .btn-secondary:hover {
+            background-color: #475569;
+            border-color: #475569;
+        }
+        a {
+            color: var(--accent-blue);
+        }
+        a:hover {
+            color: #93C5FD;
+        }
+
+        h2, h3, h4, h5, h6 {
+            color: var(--text-light);
+        }
+
+        .list-unstyled li {
+           color: var(--text-light);
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -93,11 +74,11 @@
                 <h2 class="mb-0">Driver Dashboard Guidelines</h2>
             </div>
             <div class="card-body">
-                <p class="lead">Welcome to your MegaCity Cab driver dashboard! This guide helps you manage vehicles and bookings.</p>
+                <p class="lead">Welcome to your MegaCity Cab driver dashboard! This guide helps you manage vehicles and bookings efficiently.</p>
 
                 <h3 class="mt-4">Managing Your Vehicles:</h3>
                 <ol class="list-group list-group-numbered">
-                    <li class="list-group-item"><strong>Add New Vehicle:</strong> Add a new vehicle to your profile.  Enter the vehicle number and select the vehicle type.</li>
+                    <li class="list-group-item"><strong>Add New Vehicle:</strong> Add a new vehicle to your profile. Enter the vehicle number and select the vehicle type.</li>
                     <li class="list-group-item"><strong>Your Vehicles Table:</strong> Displays all vehicles registered to your account.</li>
                     <li class="list-group-item"><strong>Delete Vehicle:</strong> Remove a vehicle from your profile by clicking the <strong>Delete</strong> button.</li>
                 </ol>

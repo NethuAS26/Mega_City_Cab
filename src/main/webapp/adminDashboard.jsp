@@ -192,7 +192,7 @@
             <!-- Total Bookings Card -->
             <div class="col-md-4">
                 <div class="data-card">
-                    <i class="fas fa-ticket-alt"></i>
+                    <i class="fas fa-calendar-check"></i>  <!-- Changed Icon -->
                     <%-- <h2>${totalBookings}</h2> --%>
                     <p>Total Bookings</p>
                     <a href="ViewBookingsServlet" class="btn btn-primary">View Details</a>
@@ -201,7 +201,7 @@
             <!-- Active Drivers Card -->
             <div class="col-md-4">
                 <div class="data-card">
-                    <i class="fas fa-taxi"></i>
+                    <i class="fas fa-shipping-fast"></i> <!-- Changed Icon -->
                     <%-- <h2>${activeDrivers}</h2> --%>
                     <p>Active Drivers</p>
                     <a href="ViewDriversServlet" class="btn btn-primary">View Details</a>
@@ -210,7 +210,7 @@
             <!-- Registered Customers Card -->
             <div class="col-md-4">
                 <div class="data-card">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-smile"></i>  <!-- Changed Icon -->
                     <%-- <h2>${registeredCustomers}</h2> --%>
                     <p>Registered Customers</p>
                     <a href="ViewCustomersServlet" class="btn btn-primary">View Details</a>
